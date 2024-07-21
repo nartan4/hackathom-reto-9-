@@ -8,13 +8,11 @@ import pandas as pd
 import ROOT
 from scipy.stats import norm
 
-# Inicializar la aplicación Dash
 app = dash.Dash(__name__)
 
 file = ROOT.TFile.Open("https://atlas-opendata.web.cern.ch/atlas-opendata/samples/2020/GamGam/Data/data_A.GamGam.root")
 tree = file.Get("mini")
 
-# Extraer los datos relevantes
 data = []
 for event in tree:
     if event.trigP:
@@ -29,15 +27,12 @@ for event in tree:
                     'photon_E': event.photon_E[j] / 1000  # Convertir a GeV
                 })
 
-# Convertir los datos a un DataFrame de pandas
 df = pd.DataFrame(data)
 
-# Simulación de datos para masa invariante y energía transversal
 np.random.seed(42)
 mass = np.random.normal(125, 10, 1000)
 energy = np.random.normal(50, 20, 1000)
 
-# Diseño de la aplicación
 app.layout = html.Div(children=[
     html.H1(children='Análisis de Masa Invariante de Diphotones'),
 
@@ -82,7 +77,7 @@ app.layout = html.Div(children=[
     [Input('interval-component', 'n_intervals')]
 )
 def update_graph_live(n):
-    # Datos de simulación en vivo
+    
     current_mass = np.random.normal(125, 10, 100)
     mass_hist = np.concatenate((mass, current_mass))
 
