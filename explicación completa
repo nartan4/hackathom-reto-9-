@@ -20,5 +20,63 @@ Durante esta presentación se muestra una breve explicación sobre el Bosón de 
 Todo lo que nos rodea está hecho de partículas. Pero cuando el universo comenzó, ninguna partícula tenía masa; todas se movían a la velocidad de la luz. La partícula que hoy llamamos bosón de Higgs apareció por primera vez en un artículo científico escrito por Peter Higgs, en 1964.La existencia de este campo generador de masa se confirmó en 2012, cuando se descubrió la partícula del bosón de Higgs en el CERN.
 Con una masa de más de 120 veces la del protón, el bosón de Higgs es la segunda partícula más pesada que se conoce en la actualidad. Esta gran masa, combinada con un tiempo de vida extremadamente corto ($10^{-22}$ segundos), significa que la partícula no se puede encontrar en la naturaleza; su existencia solo se puede verificar produciéndola en el laboratorio.
 
-# El potencial de Higgs:
+# El potencial de Higgs
+\begin{equation}
+    V(\phi) = -\mu^2\phi^{\dagger}\phi + \lambda(\phi^{\dagger}\phi)^2
+\end{equation}
 Donde $\phi$ es el doblete de Higgs, $\mu^2$ es un parámetro que determina la forma del potencial y $\lambda$ es la constante de acoplamiento que controla la auto-interacción del campo de Higgs.
+
+# Ruptura espostánea de la simetría y formación del bosón de Higgs
+Cuando $\mu^2 < 0$ y $\lambda>0$, el potencial tiene una forma que permite minimizar la energía del sistema no en el origen $\phi=0$, sino en su valor de expectación del vacío.
+
+Después de la ruptura espontánea de la simetría, el campo de Higgs puede expandirse en modos de fluctuación alrededor de su valor de expectación del vacío. Estas fluctuaciones se puede expresar en término de un campo físico masivo, conocido como el bosón de Higgs físico. 
+
+# ¿Cómo ocurre la desintegración del Boson de Higgs?
+Dada su vida útil, el bosón de Higgs se desintegra (o se transforma) casi inmediatamente en otras partículas, por lo que no es posible observarlo directamente. Las partículas de su desintegración son los únicos rastros que deja. Estos rastros deben ser detectados y medidos con precisión por detectores de partículas.
+
+El simple hecho de ver un par de fotones (uno de los estados finales de la desintegración del bosón de Higgs) no es ninguna indicación de que el bosón de Higgs exista y se esté produciendo en el experimento. Especialmente porque el bosón de Higgs solo se produce aproximadamente una vez en mil millones de estas colisiones.
+
+# Decaimiento en fotones ($\gamma\gamma$) del bosón de Higgs
+El modo de desintegración $H \rightarrow \gamma\gamma$ proporciona una firma muy clara y distintiva de dos fotones aislados y altamente energéticos, y es uno de los principales canales estudiados en el LHC. A pesar de la pequeña relación de ramificación, ($2,27 \pm 0,07) \times 10^{-3}$ para mH = 125 GeV, se puede obtener un rendimiento de señal razonablemente grande gracias a la alta eficiencia de reconstrucción e identificación de fotones en el experimento ATLAS. 
+Además, debido a la excelente resolución de energía fotónica del calorímetro ATLAS, la señal se manifiesta como un pico estrecho en el espectro de masa invariante de difotones ($m\gamma\gamma$) sobre un fondo irreducible que cae suavemente a partir de la producción Cromodinámica Cuántica (QCD por sus siglas en inglés) de dos fotones.
+
+# Comparación entre los datos y la predicción de Monte Carlo para varias distribuciones en la selección potenciada de $Z' \rightarrow t\=t$ ̄de un solo leptón
+![imagen](https://github.com/user-attachments/assets/4417a78f-3d69-4915-be09-acd4f0aacbfe)
+# Figura 1: 
+Distribuciones de la masa del chorro de gran tamaño R (a) antes y (b) después de los requisitos de etiquetado superior, chorro de gran tamaño marcado en la parte superior (c) pseudorrapidez, (d) ángulo acimutal, (e) subjetividad N, (f) momento transversal, (g) momento transversal después de una variación sistemática de incertidumbre y (h) masa aproximada del sistema $t\=t$(momento de neutrinos no agregado).
+
+# Explicación de la Figura 1
+En la Figura 1, los puntos representan datos experimentales. Los histogramas rellenos muestran la predicción de diferentes simulaciones de MC. 
+Las contribuciones están apiladas. La predicción de la señal de referencia de 1 TeV del Z' (bosón) se superpone como una curva roja punteada. La incertidumbre estadística está representada por las barras de error en los puntos de datos y el área hash en la predicción MC. 
+El último contenedor de todas las figuras contiene el desbordamiento. Los paneles inferiores de cada figura muestran la relación entre los puntos de datos y el histograma apilado.
+
+# Desarrollo del Reto 9: ATLAS Open Data
+ El análisis presentado se centra en la implementación de los criterios de selección de los candidatos a eventos $H \rightarrow \gamma\gamma$ y se basa libremente en la medición del bosón de Higgs en el canal de desintegración de difotones con datos de $\sqrt{s} = 13$ TeV recopilados con el detector ATLAS. Se aplican criterios estándar de selección de objetos.
+
+# Resultados
+A continuación,se muestra las gráficas obtenidas a partir de los códigos trabajados de los datos abiertos de ATLAS.
+
+# Resultados: Histograma de masa invariante de difotones
+![imagen](https://github.com/user-attachments/assets/c1a5deed-cfc9-4bc3-a090-fae0bf223293)
+
+# Resultados: Mapa de densidad de eventos
+![imagen](https://github.com/user-attachments/assets/b5a5c58f-abc6-465a-8e5c-cd61c8cd93e4)
+
+# Resultados: Rango de masa invariante
+![imagen](https://github.com/user-attachments/assets/c4be27a5-18ef-42b9-9885-ddbbef0cadff)
+
+# Resultados: Mapa de densidad de eventos
+![imagen](https://github.com/user-attachments/assets/afee4552-d552-4616-b6ba-43951d96f685)
+
+# Resultados: Scatter Plot vs Energía
+![imagen](https://github.com/user-attachments/assets/a8eb7f60-65a8-4fdd-bd77-70fee011c272)
+
+# Resultados: Distribución Pt
+![imagen](https://github.com/user-attachments/assets/238d344a-870f-4cbc-9846-bfb5523848f6)
+
+# Resultados: Distribución Pt
+![imagen](https://github.com/user-attachments/assets/a4963963-cccd-4cc7-be27-cf9c55c219ab)
+
+# Conslusiones 
+1) Este tipo de análisis no solo reproduce los resultados científicos fundamentales sobre el bosón de Higgs, sino que también sirve como herramienta educativa para estudiantes y nuevos investigadores. Permite que estos aprendan y comprendan cómo se realizan los análisis en física de partículas, proporcionando una base sólida para futuras investigaciones. 
+2) Además, la generación de visualizaciones de datos ayuda a presentar de manera clara y efectiva los resultados de estos complejos análisis científicos.
