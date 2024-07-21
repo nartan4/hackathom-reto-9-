@@ -3,7 +3,6 @@
 # LA-CoNGA Physics - Hackathon 2024
 
 # Introducción 
-   
 ¿Qué es el Bosón de Higgs?
 Potencial de Higgs
 Ruptura espontánea de la simetría y formación del bosón de Higgs.
