@@ -3,14 +3,14 @@
 # LA-CoNGA Physics - Hackathon 2024
 
 # Introducción 
-¿Qué es el Bosón de Higgs?
-Potencial de Higgs
-Ruptura espontánea de la simetría y formación del bosón de Higgs.
-¿Cómo ocurre la desintegración del bosón de Higgs?
-Decaimiento en fotones ($\gamma\gamma$) del bosón de Higgs.
-Desarrollo del Reto 9: ATLAS Open Data.
-Resultados
-Conclusiones
+# ¿Qué es el Bosón de Higgs?
+# Potencial de Higgs
+# Ruptura espontánea de la simetría y formación del bosón de Higgs.
+# ¿Cómo ocurre la desintegración del bosón de Higgs?
+# Decaimiento en fotones ($\gamma\gamma$) del bosón de Higgs.
+# Desarrollo del Reto 9: ATLAS Open Data.
+# Resultados
+# Conclusiones
 
 # Introducción
 Como parte del Reto 9: ATLAS Open Data, de LA-CoNGA physics hackathon 2024, hemos trabajo con códigos abierto de ATLAS, del CERN, en el lenguaje de Python, los cuales hemos modificado, aplicando diferentes herramientas para reedescubrir el Bosón de Higgs. 
