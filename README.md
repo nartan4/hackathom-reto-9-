@@ -42,10 +42,11 @@ Además, debido a la excelente resolución de energía fotónica del calorímetr
 
 # Comparación entre los datos y la predicción de Monte Carlo para varias distribuciones en la selección potenciada de $Z' \rightarrow t\=t$ ̄de un solo leptón
 ![imagen](https://github.com/user-attachments/assets/4417a78f-3d69-4915-be09-acd4f0aacbfe)
+# Figura 1: 
 Distribuciones de la masa del chorro de gran tamaño R (a) antes y (b) después de los requisitos de etiquetado superior, chorro de gran tamaño marcado en la parte superior (c) pseudorrapidez, (d) ángulo acimutal, (e) subjetividad N, (f) momento transversal, (g) momento transversal después de una variación sistemática de incertidumbre y (h) masa aproximada del sistema $t\=t$(momento de neutrinos no agregado).
 
 # Explicación de la Figura 1
-En la Figura ![imagen](https://github.com/user-attachments/assets/82c9ecd1-d47b-41e0-8bbb-a836bb8fc233), los puntos representan datos experimentales. Los histogramas rellenos muestran la predicción de diferentes simulaciones de MC. 
+En la Figura 1, los puntos representan datos experimentales. Los histogramas rellenos muestran la predicción de diferentes simulaciones de MC. 
 Las contribuciones están apiladas. La predicción de la señal de referencia de 1 TeV del Z' (bosón) se superpone como una curva roja punteada. La incertidumbre estadística está representada por las barras de error en los puntos de datos y el área hash en la predicción MC. 
 El último contenedor de todas las figuras contiene el desbordamiento. Los paneles inferiores de cada figura muestran la relación entre los puntos de datos y el histograma apilado.
 
