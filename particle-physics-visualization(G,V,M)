@@ -1,0 +1,183 @@
+import dash
+from dash import dcc, html
+from dash.dependencies import Input, Output
+import plotly.graph_objs as go
+import plotly.express as px
+import numpy as np
+import pandas as pd
+import ROOT
+from scipy.stats import norm
+
+# Inicializar la aplicación Dash
+app = dash.Dash(__name__)
+
+file = ROOT.TFile.Open("https://atlas-opendata.web.cern.ch/atlas-opendata/samples/2020/GamGam/Data/data_A.GamGam.root")
+tree = file.Get("mini")
+
+# Extraer los datos relevantes
+data = []
+for event in tree:
+    if event.trigP:
+        for j in range(event.photon_n):
+            if (event.photon_isTightID[j] and event.photon_pt[j] > 25000 and
+                (abs(event.photon_eta[j]) < 2.37) and
+                (abs(event.photon_eta[j]) < 1.37 or abs(event.photon_eta[j]) > 1.52)):
+                data.append({
+                    'photon_pt': event.photon_pt[j] / 1000,  # Convertir a GeV
+                    'photon_eta': event.photon_eta[j],
+                    'photon_phi': event.photon_phi[j],
+                    'photon_E': event.photon_E[j] / 1000  # Convertir a GeV
+                })
+
+# Convertir los datos a un DataFrame de pandas
+df = pd.DataFrame(data)
+
+# Simulación de datos para masa invariante y energía transversal
+np.random.seed(42)
+mass = np.random.normal(125, 10, 1000)
+energy = np.random.normal(50, 20, 1000)
+
+# Diseño de la aplicación
+app.layout = html.Div(children=[
+    html.H1(children='Análisis de Masa Invariante de Diphotones'),
+
+    html.Div(children='''
+        Visualizaciones y análisis de datos.
+    '''),
+
+    dcc.Graph(
+        id='histogram-graph'
+    ),
+
+    dcc.Graph(
+        id='heatmap-graph'
+    ),
+
+    html.Label("Rango de Masa Invariante (GeV)"),
+    dcc.RangeSlider(
+        id='mass-slider',
+        min=105,
+        max=160,
+        step=1,
+        value=[120, 130],
+        marks={i: f'{i}' for i in range(105, 161, 5)}
+    ),
+    
+    dcc.Graph(id='histogram'),
+    dcc.Graph(id='heatmap'),
+    
+    dcc.Graph(id='scatter-graph'),
+    dcc.Graph(id='bar-graph'),
+
+    dcc.Interval(
+        id='interval-component',
+        interval=1*1000,  # en milisegundos (1 segundo)
+        n_intervals=0
+    )
+])
+
+@app.callback(
+    [Output('histogram-graph', 'figure'),
+     Output('heatmap-graph', 'figure')],
+    [Input('interval-component', 'n_intervals')]
+)
+def update_graph_live(n):
+    # Datos de simulación en vivo
+    current_mass = np.random.normal(125, 10, 100)
+    mass_hist = np.concatenate((mass, current_mass))
+
+  
+    hist_data = np.histogram(mass_hist, bins=30, range=(105, 160))
+    bin_centers = 0.5 * (hist_data[1][1:] + hist_data[1][:-1])
+    
+    mean, std = norm.fit(mass_hist)
+    pdf = norm.pdf(bin_centers, mean, std) * len(mass_hist) * (hist_data[1][1] - hist_data[1][0])
+
+    histogram_figure = {
+        'data': [
+            go.Bar(
+                x=bin_centers,
+                y=hist_data[0],
+                name='Masa Invariante',
+                marker=dict(color='blue', opacity=0.6)
+            ),
+            go.Scatter(
+                x=bin_centers,
+                y=pdf,
+                mode='lines',
+                name='Ajuste Gaussiano',
+                line=dict(color='red')
+            )
+        ],
+        'layout': go.Layout(
+            title='Histograma de Masa Invariante de Diphotones',
+            xaxis={'title': 'Masa Invariante [GeV]'},
+            yaxis={'title': 'Eventos'},
+            showlegend=True
+        )
+    }
+
+  
+    heatmap_figure = {
+        'data': [
+            go.Histogram2d(
+                x=mass,
+                y=energy,
+                colorscale='Jet'
+            )
+        ],
+        'layout': go.Layout(
+            title='Mapa de Densidad de Eventos',
+            xaxis={'title': 'Masa Invariante [GeV]'},
+            yaxis={'title': 'Energía Transversal [GeV]'},
+            coloraxis={'colorbar': {'title': 'Eventos'}}
+        )
+    }
+
+    return histogram_figure, heatmap_figure
+
+@app.callback(
+    Output('histogram', 'figure'),
+    [Input('mass-slider', 'value')]
+)
+def update_histogram(mass_range):
+    filtered_df = df[(df['photon_pt'] >= mass_range[0]) & (df['photon_pt'] <= mass_range[1])]
+    fig = px.histogram(filtered_df, x='photon_pt', nbins=30, title='Diphoton Invariant Mass')
+    fig.update_layout(xaxis_title='Invariant Mass m_{yy} [GeV]', yaxis_title='Events', bargap=0.2)
+    return fig
+
+
+@app.callback(
+    Output('heatmap', 'figure'),
+    [Input('mass-slider', 'value')]
+)
+def update_heatmap(mass_range):
+    x = np.random.normal(125, 10, 1000)  # Datos ficticios para el heatmap
+    y = np.random.normal(50, 20, 1000)   # Datos ficticios para el heatmap
+    fig = go.Figure(go.Histogram2d(x=x, y=y, nbinsx=50, nbinsy=50, colorscale='Jet'))
+    fig.update_layout(title='Mapa de densidad de eventos', xaxis_title='Masa invariante [GeV]', yaxis_title='Energía transversal [GeV]')
+    return fig
+
+@app.callback(
+    Output('scatter-graph', 'figure'),
+    [Input('mass-slider', 'value')]
+)
+def update_scatter(mass_range):
+    filtered_df = df[(df['photon_pt'] >= mass_range[0]) & (df['photon_pt'] <= mass_range[1])]
+    fig = px.scatter(filtered_df, x='photon_pt', y='photon_E', title='Scatter Plot de Pt vs Energía')
+    fig.update_layout(xaxis_title='Pt [GeV]', yaxis_title='Energía [GeV]')
+    return fig
+
+
+@app.callback(
+    Output('bar-graph', 'figure'),
+    [Input('mass-slider', 'value')]
+)
+def update_bar(mass_range):
+    filtered_df = df[(df['photon_pt'] >= mass_range[0]) & (df['photon_pt'] <= mass_range[1])]
+    fig = px.histogram(filtered_df, x='photon_pt', nbins=30, title='Distribución de Pt')
+    fig.update_layout(xaxis_title='Pt [GeV]', yaxis_title='Conteo')
+    return fig
+
+if __name__ == '__main__':
+    app.run_server(debug=True, host='0.0.0.0', port=8050)
